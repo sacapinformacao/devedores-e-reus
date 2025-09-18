@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localização de Devedores e Réus | APinformação</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        --dark-blue: #194a86;
+        --medium-blue: #2693ab;
+        --light-blue: #e0f2f7;
+        --accent-color: #007bff;
+        --text-color: #333;
+        --highlight-color: #0056b3;
+    }
+    
+    body {
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+        color: var(--text-color);
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 20px;
+    }
+    
+    /* Cabeçalho */
+header {
+    background: linear-gradient(90deg, var(--dark-blue), var(--medium-blue));
+    padding: 0 20px;
+    height: 72px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* container da logo */
+.header-logo {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    height: 100%;
+    padding-right: 12px;
+}
+
+/* LOGO */
+.header-logo img {
+    max-height: 64px;
+    max-width: 220px;
+    width: auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* Nav */
+.header-nav {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.header-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    white-space: nowrap;
+    overflow: visible;
+}
+
+.header-nav a,
+.header-nav span {
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.header-nav a:hover,
+.header-nav span:hover {
+    color: var(--light-blue);
+    transform: scale(1.05);
+}
+
+.header-nav li {
+    position: relative;
+}
+    
+.header-nav li .dropdown-menu {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    left: -15px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px 0;
+    min-width: 220px;
+    z-index: 1000;
+    border-radius: 5px;
+    text-align: left;
+    transition: visibility 0s, opacity 0.3s linear;
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 8px 20px;
+    font-weight: 400;
+    color: var(--text-color);
+    white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+    color: var(--medium-blue);
+    background-color: #f0f8fa;
+}
+
+.header-nav li:hover .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+}
+
+.header-cta {
+    flex: 0 0 auto;
+    margin-left: 12px;
+    display: flex;
+    gap: 15px;
+}
+/* Botão Login - Chamativo */
+.header-cta .cta-login {
+    background-color: white;
+    color: var(--dark-blue);
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.header-cta .cta-login:hover {
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+}
+
+/* Botão Fale Conosco - Secundário */
+.header-cta .cta-contact {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+.header-cta .cta-contact:hover {
+    background-color: white;
+    color: var(--dark-blue);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header {
+        height: 60px;
+        padding: 0 12px;
+        justify-content: center;
+    }
+    .header-logo img {
+        max-height: 46px;
+        max-width: 160px;
+    }
+    .header-nav ul {
+        display: none;
+    }
+    .header-cta {
+        display: none;
+    }
+}
+    /* Hero */
+    .hero {
+        background-color: var(--light-blue);
+        padding: 80px 20px;
+        text-align: center;
+        color: var(--dark-blue);
+    }
+
+    .hero h1 {
+        font-size: 2.8em;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .hero p {
+        font-size: 1.3em;
+        margin: 20px auto 30px;
+        max-width: 700px;
+    }
+
+    /* Seções */
+    .section {
+        padding: 60px 20px;
+        margin-top: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        background-color: white;
+    }
+    
+    .section h2 {
+        text-align: center;
+        color: var(--dark-blue);
+        font-size: 2.2em;
+        margin-bottom: 30px;
+    }
+
+    /* Cards */
+    .service-grid, .sector-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .sector-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: transform 0.3s ease;
+        border: 1px solid var(--light-blue);
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card h3 {
+        color: var(--medium-blue);
+        font-size: 1.5em;
+        margin-top: 0;
+    }
+
+    .card p {
+        font-size: 1em;
+        color: #666;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background-color: var(--accent-color);
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.1em;
+        font-weight: 700;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+    }
+    
+    .cta-button:hover {
+        background-color: var(--highlight-color);
+    }
+
+    .clients-section {
+        background-color: var(--light-blue);
+        text-align: center;
+        overflow: hidden;
+    }
+    
+    .clients-section h2 {
+        color: var(--medium-blue);
+    }
+
+    /* Carrossel de logos */
+    .logo-slider {
+        display: flex;
+        animation: slide-logos 90s linear infinite;
+        white-space: nowrap;
+        align-items: center;
+        margin-top: 30px;
+        will-change: transform;
+    }
+
+    .logo-slider:hover {
+        animation-play-state: paused;
+    }
+
+    .logo-slider img {
+        height: 60px;
+        width: auto;
+        object-fit: contain;
+        margin: 0 30px;
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: filter 0.3s, opacity 0.3s;
+    }
+    
+    .logo-slider img:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+
+    @keyframes slide-logos {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+    
+    /* Seção de Números da página "Sobre Nós" */
+    .numbers-section {
+        background: linear-gradient(180deg, var(--dark-blue), var(--medium-blue));
+        color: #fff;
+        padding: 56px 20px;
+        text-align: center;
+        margin-top: 18px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(24,38,63,0.06);
+    }
+
+    .numbers-grid {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+    }
+
+    .number-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .number-card h3 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin: 0;
+        line-height: 1;
+    }
+
+    .number-card p {
+        font-size: 1.1rem;
+        font-weight: 400;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    @media (max-width: 768px) {
+        .numbers-grid {
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+
+    /* Footer */
+    footer {
+        background-color: var(--dark-blue);
+        color: white;
+        padding: 40px 20px;
+        font-size: 0.9em;
+    }
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .footer-column {
+        flex: 1 1 200px;
+    }
+    .footer-column h3 {
+        color: var(--medium-blue);
+        font-size: 1.2em;
+        margin-bottom: 15px;
+        border-bottom: 2px solid var(--medium-blue);
+        padding-bottom: 5px;
+        display: inline-block;
+    }
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .footer-column a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 5px 0;
+        transition: color 0.3s;
+    }
+    .footer-column a:hover {
+        color: var(--light-blue);
+    }
+    .footer-logo img {
+        max-width: 200px;
+        margin-bottom: 15px;
+    }
+    .footer-contact p {
+        margin: 5px 0;
+    }
+    .footer-contact a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    .footer-contact a:hover {
+        color: var(--light-blue);
+    }
+    .footer-linkedin-icon {
+        width: 24px;
+        height: auto;
+        vertical-align: middle;
+    }
+    .footer-copyright {
+        text-align: center;
+        padding-top: 20px;
+        font-size: 0.8em;
+        opacity: 0.7;
+    }
+    @media (max-width: 768px) {
+        .footer-content {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .footer-column {
+            margin-bottom: 20px;
+        }
+        .footer-column h3 {
+            border-bottom: none;
+        }
+    }
+    /* Ajuste para telas menores: os cartões voltam a se empilhar para melhor visualização em celulares. */
+    @media (max-width: 1024px) {
+        .service-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-logo">
+            <a href="https://sacapinformacao.github.io/Site/">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/36d5eab5b6cf22741d66c95eae5857a60141dee2/logo%20novo%20branco%20copiar.png" alt="AP Informação Logo">
+            </a>
+        </div>
+        <nav class="header-nav">
+            <ul>
+                <li>
+                    <span>Serviços</span>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
+                        <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
+                        <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
+                        <li><a href="https://sacapinformacao.github.io/Compliance/">Compliance e LGPD</a></li>
+                        <li><a href="https://sacapinformacao.github.io/Cadastral/">Validação Cadastral</a></li>
+                        <li><a href="https://sacapinformacao.github.io/Credito/">Análise de Crédito</a></li>
+                        <li><a href="https://sacapinformacao.github.io/checagem-pre-processual/">Checagem Pré-processual</a></li>
+                        <li><a href="#">Localização de Devedores e Réus</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span>Setores</span>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://sacapinformacao.github.io/Landpage-Advocacia/">Jurídico</a></li>
+                        <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Mercado Imobiliário</a></li>
+                        <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Incorporação Imobiliária</a></li>
+                        <li><a href="https://sacapinformacao.github.io/Landpage-Industrias/">Industrial</a></li>
+                        <li><a href="#">Outros</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span>Institucional</span>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">LGPD</a></li>
+                        <li><a href="https://sacapinformacao.github.io/sobre-nos/">Sobre Nós</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://sacapinformacao.github.io/Planos/">Planos</a></li>
+            </ul>
+        </nav>
+        <div class="header-cta">
+            <a href="https://www.apinformacao.net.br/access/acesso.php" class="cta-login">Login</a>
+            <a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20soluções%20de%20análise%20de%20risco%20da%20AP%20Informação." class="cta-contact">Fale Conosco</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Localização de Devedores e Réus: Encontre Quem Você Procura com Precisão</h1>
+                <p>Nossa solução utiliza dados abrangentes e atualizados para identificar endereços, telefones e vínculos de pessoas físicas e jurídicas. Encerre o ciclo de "devedor não encontrado" e otimize suas ações de cobrança e citações judiciais.</p>
+                <a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20soluções%20de%20análise%20de%20risco%20da%20AP%20Informação." class="cta-button">Recupere Seus Ativos</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>O que nossa solução de localização oferece?</h2>
+                <div class="service-grid">
+                    <div class="card">
+                        <h3>Dados Cadastrais Atualizados</h3>
+                        <p>Acesse endereços, telefones e e-mails de contato validados, garantindo que suas tentativas de contato e notificações sejam eficazes.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Vínculos Familiares e Societários</h3>
+                        <p>Descubra vínculos com familiares, sócios e outras pessoas-chave, uma informação essencial para ações de cobrança e investigações mais complexas.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Levantamento de Bens e Propriedades</h3>
+                        <p>Pesquise bens, imóveis e propriedades, auxiliando na garantia de que o processo judicial seja viável e que haja patrimônio para cobrir eventuais dívidas.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Validação em Múltiplas Fontes</h3>
+                        <p>Cruzamos dados de diversas bases para validar e enriquecer as informações, garantindo a máxima precisão e confiabilidade do resultado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background-color: var(--light-blue);">
+            <div class="container" style="text-align: center;">
+                <h2>Por que a Localização de Devedores é sua Prioridade?</h2>
+                <div class="service-grid">
+                    <div class="card">
+                        <h3>Mais Assertividade</h3>
+                        <p>Elimine os obstáculos causados por informações desatualizadas. Nossos dados garantem maior precisão em suas ações.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Economia de Tempo e Custo</h3>
+                        <p>Reduza o tempo gasto com tentativas de localização infrutíferas, otimizando o trabalho de sua equipe e os custos operacionais.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Estratégia Otimizada</h3>
+                        <p>Aumente as chances de sucesso na recuperação de ativos e na execução de títulos, agilizando todo o processo.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Dados Abrangentes</h3>
+                        <p>Integramos múltiplas fontes de dados para fornecer o panorama mais completo possível, do endereço ao vínculo mais complexo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="setores-localizacao">
+            <div class="container">
+                <h2>Solução Ideal Para:</h2>
+                <div class="sector-grid">
+                    <div class="card">
+                        <h3>Escritórios de Advocacia</h3>
+                        <p>Para localizar réus, devedores e herdeiros, garantindo a citação e o andamento processual com mais agilidade.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Departamentos Jurídicos de Empresas</h3>
+                        <p>Apoie seu setor jurídico na localização de pessoas e empresas para processos de cobrança, citação judicial e outras demandas legais da companhia.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Empresas de Cobrança</h3>
+                        <p>Aumente a taxa de recuperação de dívidas, encontrando devedores e otimizando suas estratégias de contato.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background-color: var(--medium-blue); color: white; text-align: center;">
+            <div class="container">
+                <h2>Não Deixe a Inadimplência Prejudicar seu Negócio.</h2>
+                <p>Nossa solução é a chave para a agilidade e sucesso na sua próxima ação de cobrança ou processo judicial.</p>
+                <a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20soluções%20de%20análise%20de%20risco%20da%20AP%20Informação." class="cta-button" style="background-color: white; color: var(--medium-blue);">Fale com a APinformação</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column footer-contact">
+                    <a href="https://sacapinformacao.github.io/Site/" class="footer-logo">
+                        <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/36d5eab5b6cf22741d66c95eae5857a60141dee2/logo%20novo%20branco%20copiar.png" alt="AP Informação Logo">
+                    </a>
+                    <p style="font-weight: 700; font-size: 1.1em;">
+                        <a href="tel:+551137445678">(11) 3744-5678</a>
+                    </p>
+                    <p>
+                        <a href="mailto:contato@apinformacao.com.br">contato@apinformacao.com.br</a>
+                    </p>
+                    <p>
+                        <a href="https://www.linkedin.com/company/apinformacao" target="_blank" rel="noopener noreferrer">
+                            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" class="footer-linkedin-icon" style="filter: invert(100%);">
+                        </a>
+                    </p>
+                </div>
+                <div class="footer-column">
+                    <h3>Serviços</h3>
+                    <ul>
+                        <li><a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
+                        <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
+                        <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
+                        <li><a href="https://sacapinformacao.github.io/Compliance/">Compliance e LGPD</a></li>
+                        <li><a href="https://sacapinformacao.github.io/Cadastral/">Validação Cadastral</a></li>
+                        <li><a href="https://sacapinformacao.github.io/Credito/">Análise de Crédito</a></li>
+                        <li><a href="https://sacapinformacao.github.io/checagem-pre-processual/">Checagem Pré-processual</a></li>
+                        <li><a href="#">Localização de Devedores e Réus</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Setores</h3>
+                    <ul>
+                        <li><a href="https://sacapinformacao.github.io/Landpage-Advocacia/">Jurídico</a></li>
+                        <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Mercado Imobiliário</a></li>
+                        <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Incorporação Imobiliária</a></li>
+                        <li><a href="https://sacapinformacao.github.io/Landpage-Industrias/">Industrial</a></li>
+                        <li><a href="#">Outros</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Institucional</h3>
+                    <ul>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">LGPD</a></li>
+                        <li><a href="https://sacapinformacao.github.io/sobre-nos/">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Links Úteis</h3>
+                    <ul>
+                        <li><a href="https://sacapinformacao.github.io/Planos/">Planos</a></li>
+                        <li><a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20soluções%20de%20análise%20de%20risco%20da%20AP%20Informação.">Fale Conosco</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>© 1997-2025 Todos os direitos reservados à APinformação.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
