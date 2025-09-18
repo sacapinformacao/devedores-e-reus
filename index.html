@@ -15,185 +15,191 @@
         --accent-color: #007bff;
         --text-color: #333;
         --highlight-color: #0056b3;
+        --orange-border: #FF8C00;
     }
-    
+
+    * {
+        box-sizing: border-box
+    }
+
     body {
         font-family: 'Roboto', sans-serif;
-        line-height: 1.6;
         margin: 0;
-        padding: 0;
-        background-color: #f7f7f7;
         color: var(--text-color);
+        background: #f7f7f7;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
-    
+
     .container {
         max-width: 1200px;
-        margin: auto;
-        padding: 0 20px;
+        margin: 0 auto;
+        padding: 0 20px
     }
-    
-    /* Cabeçalho */
-header {
-    background: linear-gradient(90deg, var(--dark-blue), var(--medium-blue));
-    padding: 0 20px;
-    height: 72px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
 
-/* container da logo */
-.header-logo {
-    display: flex;
-    align-items: center;
-    flex: 0 0 auto;
-    height: 100%;
-    padding-right: 12px;
-}
-
-/* LOGO */
-.header-logo img {
-    max-height: 64px;
-    max-width: 220px;
-    width: auto;
-    height: auto;
-    display: block;
-    object-fit: contain;
-}
-
-/* Nav */
-.header-nav {
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
-}
-
-.header-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 24px;
-    align-items: center;
-    white-space: nowrap;
-    overflow: visible;
-}
-
-.header-nav a,
-.header-nav span {
-    text-decoration: none;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-    transition: color 0.3s, transform 0.2s;
-}
-
-.header-nav a:hover,
-.header-nav span:hover {
-    color: var(--light-blue);
-    transform: scale(1.05);
-}
-
-.header-nav li {
-    position: relative;
-}
-    
-.header-nav li .dropdown-menu {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    top: 100%;
-    left: -15px;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    padding: 10px 0;
-    min-width: 220px;
-    z-index: 1000;
-    border-radius: 5px;
-    text-align: left;
-    transition: visibility 0s, opacity 0.3s linear;
-    display: block;
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 8px 20px;
-    font-weight: 400;
-    color: var(--text-color);
-    white-space: nowrap;
-}
-
-.dropdown-menu a:hover {
-    color: var(--medium-blue);
-    background-color: #f0f8fa;
-}
-
-.header-nav li:hover .dropdown-menu {
-    visibility: visible;
-    opacity: 1;
-}
-
-.header-cta {
-    flex: 0 0 auto;
-    margin-left: 12px;
-    display: flex;
-    gap: 15px;
-}
-/* Botão Login - Chamativo */
-.header-cta .cta-login {
-    background-color: white;
-    color: var(--dark-blue);
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-.header-cta .cta-login:hover {
-    background-color: var(--light-blue);
-    color: var(--dark-blue);
-}
-
-/* Botão Fale Conosco - Secundário */
-.header-cta .cta-contact {
-    background-color: transparent;
-    border: 2px solid white;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-}
-.header-cta .cta-contact:hover {
-    background-color: white;
-    color: var(--dark-blue);
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
+    /* Estilos do cabeçalho */
     header {
-        height: 60px;
-        padding: 0 12px;
+        background: linear-gradient(90deg, var(--dark-blue), var(--medium-blue));
+        padding: 0 20px;
+        height: 72px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .header-logo {
+        display: flex;
+        align-items: center;
+        flex: 0 0 auto;
+        height: 100%;
+        padding-right: 12px;
+    }
+
+    .header-logo img {
+        max-height: 64px;
+        max-width: 220px;
+        width: auto;
+        height: auto;
+        display: block;
+        object-fit: contain;
+    }
+
+    .header-nav {
+        flex: 1 1 auto;
+        display: flex;
         justify-content: center;
     }
-    .header-logo img {
-        max-height: 46px;
-        max-width: 160px;
-    }
+
     .header-nav ul {
-        display: none;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        white-space: nowrap;
+        overflow: visible;
     }
+
+    .header-nav a,
+    .header-nav span {
+        text-decoration: none;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+        transition: color 0.3s, transform 0.2s;
+    }
+
+    .header-nav a:hover,
+    .header-nav span:hover {
+        color: var(--light-blue);
+        transform: scale(1.05);
+    }
+
+    .header-nav li {
+        position: relative;
+    }
+
+    .header-nav li .dropdown-menu {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        top: 100%;
+        left: -15px;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+        min-width: 220px;
+        z-index: 1000;
+        border-radius: 5px;
+        text-align: left;
+        transition: visibility 0s, opacity 0.3s linear;
+        display: block;
+    }
+
+    .dropdown-menu a {
+        display: block;
+        padding: 8px 20px;
+        font-weight: 400;
+        color: var(--text-color);
+        white-space: nowrap;
+    }
+
+    .dropdown-menu a:hover {
+        color: var(--medium-blue);
+        background-color: #f0f8fa;
+    }
+
+    .header-nav li:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+    }
+
     .header-cta {
-        display: none;
+        flex: 0 0 auto;
+        margin-left: 12px;
+        display: flex;
+        gap: 15px;
     }
-}
-    /* Hero */
+
+    .header-cta .cta-login {
+        background-color: white;
+        color: var(--dark-blue);
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-cta .cta-login:hover {
+        background-color: var(--light-blue);
+        color: var(--dark-blue);
+    }
+
+    .header-cta .cta-contact {
+        background-color: transparent;
+        border: 2px solid var(--orange-border);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    .header-cta .cta-contact:hover {
+        background-color: var(--orange-border);
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        header {
+            height: 60px;
+            padding: 0 12px;
+            justify-content: center;
+        }
+
+        .header-logo img {
+            max-height: 46px;
+            max-width: 160px;
+        }
+
+        .header-nav ul {
+            display: none;
+        }
+
+        .header-cta {
+            display: none;
+        }
+    }
+    
+    /* Conteúdo da página */
     .hero {
         background-color: var(--light-blue);
         padding: 80px 20px;
@@ -374,7 +380,7 @@ header {
         }
     }
 
-    /* Footer */
+    /* Estilos do rodapé */
     footer {
         background-color: var(--dark-blue);
         color: white;
@@ -434,6 +440,7 @@ header {
         width: 24px;
         height: auto;
         vertical-align: middle;
+        filter: brightness(0) invert(100%);
     }
     .footer-copyright {
         text-align: center;
@@ -454,6 +461,18 @@ header {
             border-bottom: none;
         }
     }
+    /* Estilos específicos para garantir que os links não quebrem */
+    .footer-group {
+        display: flex;
+        flex-wrap: nowrap; /* Impede a quebra de linha */
+        gap: 40px;
+    }
+    .footer-group .footer-column {
+        flex: 0 0 auto;
+    }
+    .footer-group h3, .footer-group ul {
+        white-space: nowrap;
+    }
     /* Ajuste para telas menores: os cartões voltam a se empilhar para melhor visualização em celulares. */
     @media (max-width: 1024px) {
         .service-grid {
@@ -465,53 +484,53 @@ header {
 <body>
 
     <header>
-        <div class="header-logo">
-            <a href="https://sacapinformacao.github.io/Site/">
-                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/36d5eab5b6cf22741d66c95eae5857a60141dee2/logo%20novo%20branco%20copiar.png" alt="AP Informação Logo">
-            </a>
-        </div>
-        <nav class="header-nav">
-            <ul>
-                <li>
-                    <span>Serviços</span>
-                    <ul class="dropdown-menu">
-                        <li><a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Compliance/">Compliance e LGPD</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Cadastral/">Validação Cadastral</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Credito/">Análise de Crédito</a></li>
-                        <li><a href="https://sacapinformacao.github.io/checagem-pre-processual/">Checagem Pré-processual</a></li>
-                        <li><a href="#">Localização de Devedores e Réus</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <span>Setores</span>
-                    <ul class="dropdown-menu">
-                        <li><a href="https://sacapinformacao.github.io/Landpage-Advocacia/">Jurídico</a></li>
-                        <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Mercado Imobiliário</a></li>
-                        <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Incorporação Imobiliária</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Landpage-Industrias/">Industrial</a></li>
-                        <li><a href="#">Outros</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <span>Institucional</span>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Política de Privacidade</a></li>
-                        <li><a href="#">Termos de Uso</a></li>
-                        <li><a href="#">LGPD</a></li>
-                        <li><a href="https://sacapinformacao.github.io/sobre-nos/">Sobre Nós</a></li>
-                    </ul>
-                </li>
-                <li><a href="https://sacapinformacao.github.io/Planos/">Planos</a></li>
-            </ul>
-        </nav>
-        <div class="header-cta">
-            <a href="https://www.apinformacao.net.br/access/acesso.php" class="cta-login">Login</a>
-            <a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20soluções%20de%20análise%20de%20risco%20da%20AP%20Informação." class="cta-contact">Fale Conosco</a>
-        </div>
-    </header>
+    <div class="header-logo">
+        <a href="https://sacapinformacao.github.io/Site/">
+            <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/36d5eab5b6cf22741d66c95eae5857a60141dee2/logo%20novo%20branco%20copiar.png" alt="AP Informação Logo">
+        </a>
+    </div>
+    <nav class="header-nav">
+        <ul>
+            <li>
+                <span>Serviços</span>
+                <ul class="dropdown-menu">
+                    <li><a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
+                    <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
+                    <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
+                    <li><a href="https://sacapinformacao.github.io/Compliance/">Compliance e LGPD</a></li>
+                    <li><a href="https://sacapinformacao.github.io/Cadastral/">Validação Cadastral</a></li>
+                    <li><a href="https://sacapinformacao.github.io/Credito/">Análise de Crédito</a></li>
+                    <li><a href="https://sacapinformacao.github.io/checagem-pre-processual/">Checagem Pré-processual</a></li>
+                    <li><a href="https://sacapinformacao.github.io/devedores-e-reus/">Localização de Devedores e Réus</a></li>
+                </ul>
+            </li>
+            <li>
+                <span>Setores</span>
+                <ul class="dropdown-menu">
+                    <li><a href="https://sacapinformacao.github.io/Landpage-Advocacia/">Jurídico</a></li>
+                    <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Mercado Imobiliário</a></li>
+                    <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Incorporação Imobiliária</a></li>
+                    <li><a href="https://sacapinformacao.github.io/Landpage-Industrias/">Industrial</a></li>
+                    <li><a href="#">Outros</a></li>
+                </ul>
+            </li>
+            <li>
+                <span>Institucional</span>
+                <ul class="dropdown-menu">
+                    <li><a href="https://sacapinformacao.github.io/sobre-nos/">Sobre Nós</a></li>
+                    <li><a href="https://drive.google.com/file/d/1DQvVlS1Ow__6QLGZpkB2BjUVmXXfnzjD/view" target="_blank">Política de Privacidade</a></li>
+                    <li><a href="https://drive.google.com/file/d/1Lj5iffFbif-GsxksNGa95jRB_h8JFjKn/view" target="_blank">Termos de Uso</a></li>
+                    <li><a href="https://drive.google.com/file/d/1aHLWnCK61uiYowJ357_FTSyOXxoGoTSw/view" target="_blank">LGPD</a></li>
+                </ul>
+            </li>
+            <li><a href="https://sacapinformacao.github.io/Planos/">Planos</a></li>
+        </ul>
+    </nav>
+    <div class="header-cta">
+        <a href="https://www.apinformacao.net.br/access/acesso.php" class="cta-login">Login</a>
+        <a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20soluções%20de%20análise%20de%20risco%20da%20AP%20Informação." class="cta-contact">Fale Conosco</a>
+    </div>
+  </header>
 
     <main>
         <section class="hero">
@@ -600,69 +619,69 @@ header {
     </main>
 
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column footer-contact">
-                    <a href="https://sacapinformacao.github.io/Site/" class="footer-logo">
-                        <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/36d5eab5b6cf22741d66c95eae5857a60141dee2/logo%20novo%20branco%20copiar.png" alt="AP Informação Logo">
-                    </a>
-                    <p style="font-weight: 700; font-size: 1.1em;">
-                        <a href="tel:+551137445678">(11) 3744-5678</a>
-                    </p>
-                    <p>
-                        <a href="mailto:contato@apinformacao.com.br">contato@apinformacao.com.br</a>
-                    </p>
-                    <p>
-                        <a href="https://www.linkedin.com/company/apinformacao" target="_blank" rel="noopener noreferrer">
-                            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" class="footer-linkedin-icon" style="filter: invert(100%);">
-                        </a>
-                    </p>
-                </div>
-                <div class="footer-column">
-                    <h3>Serviços</h3>
-                    <ul>
-                        <li><a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Compliance/">Compliance e LGPD</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Cadastral/">Validação Cadastral</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Credito/">Análise de Crédito</a></li>
-                        <li><a href="https://sacapinformacao.github.io/checagem-pre-processual/">Checagem Pré-processual</a></li>
-                        <li><a href="#">Localização de Devedores e Réus</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Setores</h3>
-                    <ul>
-                        <li><a href="https://sacapinformacao.github.io/Landpage-Advocacia/">Jurídico</a></li>
-                        <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Mercado Imobiliário</a></li>
-                        <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Incorporação Imobiliária</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Landpage-Industrias/">Industrial</a></li>
-                        <li><a href="#">Outros</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Institucional</h3>
-                    <ul>
-                        <li><a href="#">Política de Privacidade</a></li>
-                        <li><a href="#">Termos de Uso</a></li>
-                        <li><a href="#">LGPD</a></li>
-                        <li><a href="https://sacapinformacao.github.io/sobre-nos/">Sobre Nós</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Links Úteis</h3>
-                    <ul>
-                        <li><a href="https://sacapinformacao.github.io/Planos/">Planos</a></li>
-                        <li><a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20soluções%20de%20análise%20de%20risco%20da%20AP%20Informação.">Fale Conosco</a></li>
-                    </ul>
-                </div>
+    <div class="container footer-content">
+        <div class="footer-column footer-contact">
+            <a href="https://sacapinformacao.github.io/Site/" class="footer-logo">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/36d5eab5b6cf22741d66c95eae5857a60141dee2/logo%20novo%20branco%20copiar.png" alt="AP Informação Logo">
+            </a>
+            <p style="font-weight: 700; font-size: 1.1em;">
+                <a href="tel:+551137445678">(11) 3744-5678</a>
+            </p>
+            <p>
+                <a href="mailto:contato@apinformacao.com.br">contato@apinformacao.com.br</a>
+            </p>
+            <p>
+                <a href="https://www.linkedin.com/company/apinformacao" target="_blank" rel="noopener noreferrer">
+                    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" class="footer-linkedin-icon">
+                </a>
+            </p>
+        </div>
+        <div class="footer-column">
+            <h3>Serviços</h3>
+            <ul>
+                <li><a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
+                <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
+                <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
+                <li><a href="https://sacapinformacao.github.io/Compliance/">Compliance e LGPD</a></li>
+                <li><a href="https://sacapinformacao.github.io/Cadastral/">Validação Cadastral</a></li>
+                <li><a href="https://sacapinformacao.github.io/Credito/">Análise de Crédito</a></li>
+                <li><a href="https://sacapinformacao.github.io/checagem-pre-processual/">Checagem Pré-processual</a></li>
+                <li><a href="https://sacapinformacao.github.io/devedores-e-reus/">Localização de Devedores e Réus</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Setores</h3>
+            <ul>
+                <li><a href="https://sacapinformacao.github.io/Landpage-Advocacia/">Jurídico</a></li>
+                <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Mercado Imobiliário</a></li>
+                <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Incorporação Imobiliária</a></li>
+                <li><a href="https://sacapinformacao.github.io/Landpage-Industrias/">Industrial</a></li>
+                <li><a href="#">Outros</a></li>
+            </ul>
+        </div>
+        <div class="footer-group">
+            <div class="footer-column">
+                <h3>Institucional</h3>
+                <ul>
+                    <li><a href="https://sacapinformacao.github.io/sobre-nos/">Sobre Nós</a></li>
+                    <li><a href="https://drive.google.com/file/d/1DQvVlS1Ow__6QLGZpkB2BjUVmXXfnzjD/view" target="_blank">Política de Privacidade</a></li>
+                    <li><a href="https://drive.google.com/file/d/1Lj5iffFbif-GsxksNGa95jRB_h8JFjKn/view" target="_blank">Termos de Uso</a></li>
+                    <li><a href="https://drive.google.com/file/d/1aHLWnCK61uiYowJ357_FTSyOXxoGoTSw/view" target="_blank">LGPD</a></li>
+                </ul>
             </div>
-            <div class="footer-copyright">
-                <p>© 1997-2025 Todos os direitos reservados à APinformação.</p>
+            <div class="footer-column">
+                <h3>Links Úteis</h3>
+                <ul>
+                    <li><a href="https://sacapinformacao.github.io/Planos/">Planos</a></li>
+                    <li><a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20soluções%20de%20análise%20de%20risco%20da%20AP%20Informação." target="_blank">Fale Conosco</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+    </div>
+    <div class="footer-copyright">
+        <p>© 1997-2025 Todos os direitos reservados à APinformação.</p>
+    </div>
+  </footer>
 
 </body>
 </html>
