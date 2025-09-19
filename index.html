@@ -177,12 +177,31 @@
         background-color: var(--orange-border);
         color: white;
     }
+    
+    /* NOVO: Estilos para o menu mobile (fora da media query) */
+    #menu-toggle {
+        display: none; /* Esconde o checkbox real */
+    }
 
+    .menu-icon {
+        display: none; /* Esconde o ícone de hambúrguer por padrão (desktop) */
+        font-size: 2em;
+        color: white;
+        cursor: pointer;
+        padding: 0 10px;
+        order: 3;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    /* MEDIA QUERY CORRIGIDA para MOBILE */
     @media (max-width: 768px) {
         header {
             height: 60px;
             padding: 0 12px;
-            justify-content: center;
+            justify-content: space-between; /* Alinha logo à esquerda e CTA/menu à direita */
+            gap: 10px;
         }
 
         .header-logo img {
@@ -190,12 +209,119 @@
             max-width: 160px;
         }
 
-        .header-nav ul {
-            display: none;
+        /* CORREÇÕES CABEÇALHO MOBILE */
+        .header-cta {
+            display: flex; /* Exibe o bloco CTA */
+            order: 2; /* Ordem para aparecer antes do menu icon */
+            margin-left: auto; /* Empurra para a direita */
+            gap: 10px;
+            align-items: center; /* Alinha verticalmente os botões */
         }
 
-        .header-cta {
-            display: none;
+        .header-cta .cta-login {
+            display: flex; /* Exibe o botão de login */
+            padding: 8px 16px;
+            font-size: 0.85em;
+            align-items: center;
+        }
+
+        .header-cta .cta-contact {
+            display: none; /* Oculta o botão de contato secundário no mobile */
+        }
+
+        /* Menu de Navegação (Hidden by Default) */
+        .header-nav {
+            display: none; /* Esconde o menu de navegação por padrão */
+            position: absolute;
+            top: 60px; /* Abaixo do cabeçalho */
+            left: 0;
+            right: 0;
+            background-color: var(--dark-blue);
+            text-align: left;
+            padding: 10px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex-direction: column;
+            width: 100%;
+            max-height: calc(100vh - 60px); /* Ocupa o resto da altura da tela */
+            overflow-y: auto; /* Permite rolagem se o menu for muito longo */
+        }
+
+        .header-nav ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .header-nav li {
+            position: static; /* Remove posicionamento relativo */
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-nav li:last-child {
+            border-bottom: none;
+        }
+
+        .header-nav a, .header-nav span {
+            display: block;
+            padding: 12px 20px;
+            color: white;
+            width: 100%;
+        }
+
+        /* Ajuste do dropdown para mobile */
+        .header-nav li .dropdown-menu {
+            position: static; /* Altera o posicionamento para que o dropdown apareça abaixo do item */
+            background-color: rgba(0, 0, 0, 0.1);
+            box-shadow: none;
+            visibility: visible; /* Garante que o dropdown esteja sempre visível quando o menu principal está */
+            opacity: 1;
+            padding: 0;
+            min-width: auto;
+            border-radius: 0;
+            margin-top: 0;
+        }
+        
+        .dropdown-menu a {
+            padding: 8px 20px 8px 40px; /* Ajusta o padding para indentação */
+            color: #eee;
+        }
+        
+        /* Exibir menu ao clicar no ícone */
+        #menu-toggle:checked ~ .menu-icon + .header-nav {
+            display: flex; /* Mostra o menu quando o checkbox está marcado */
+        }
+
+        .menu-icon {
+            display: flex; /* Exibe o ícone de hambúrguer no mobile */
+        }
+
+        /* CORREÇÕES RODAPÉ MOBILE (para estrutura com footer-group) */
+        .footer-content {
+            flex-direction: column; /* Empilha as colunas principais */
+            align-items: center;
+            text-align: center;
+            gap: 20px; /* Espaçamento entre as colunas empilhadas */
+        }
+        .footer-column {
+            margin-bottom: 20px;
+        }
+        .footer-column h3 {
+            border-bottom: none;
+        }
+        .footer-group { /* Regras para o agrupamento de Institucional e Links Úteis */
+            display: flex;
+            flex-direction: column; /* Força o empilhamento das colunas dentro do grupo */
+            gap: 0;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .footer-group .footer-column {
+            flex: 1 1 100%;
+            margin-bottom: 0;
         }
     }
     
@@ -448,19 +574,6 @@
         font-size: 0.8em;
         opacity: 0.7;
     }
-    @media (max-width: 768px) {
-        .footer-content {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .footer-column {
-            margin-bottom: 20px;
-        }
-        .footer-column h3 {
-            border-bottom: none;
-        }
-    }
     /* Estilos específicos para garantir que os links não quebrem */
     .footer-group {
         display: flex;
@@ -489,6 +602,10 @@
             <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/36d5eab5b6cf22741d66c95eae5857a60141dee2/logo%20novo%20branco%20copiar.png" alt="AP Informação Logo">
         </a>
     </div>
+    <!-- NOVO: Adicionado input e label para o menu mobile -->
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+    <!-- FIM NOVO -->
     <nav class="header-nav">
         <ul>
             <li>
@@ -673,7 +790,7 @@
                 <h3>Links Úteis</h3>
                 <ul>
                     <li><a href="https://sacapinformacao.github.io/Planos/">Planos</a></li>
-                    <li><a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20soluções%20de%20análise%20de%20risco%20da%20AP%20Informação." target="_blank">Fale Conosco</a></li>
+                    <li><a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20soluções%20de%20análise%20de%20risco%20da%20AP%20Informação.">Fale Conosco</a></li>
                 </ul>
             </div>
         </div>
