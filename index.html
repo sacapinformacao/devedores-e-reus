@@ -339,10 +339,12 @@
         margin: 0;
     }
 
+    /* MUDANÇA 2: Cor do texto da descrição principal para a cor dos textos dos cards (#666) */
     .hero p {
         font-size: 1.3em;
         margin: 20px auto 30px;
         max-width: 700px;
+        color: #666; /* Cor do texto de cards para a descrição do Hero */
     }
 
     /* Seções */
@@ -387,10 +389,12 @@
         transform: translateY(-5px);
     }
 
+    /* MUDANÇA 3: Cor do título do Card para preto negrito */
     .card h3 {
-        color: var(--medium-blue);
+        color: black;
         font-size: 1.5em;
         margin-top: 0;
+        font-weight: 700;
     }
 
     .card p {
@@ -602,23 +606,21 @@
             <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/36d5eab5b6cf22741d66c95eae5857a60141dee2/logo%20novo%20branco%20copiar.png" alt="AP Informação Logo">
         </a>
     </div>
-    <!-- NOVO: Adicionado input e label para o menu mobile -->
     <input type="checkbox" id="menu-toggle">
     <label for="menu-toggle" class="menu-icon">&#9776;</label>
-    <!-- FIM NOVO -->
     <nav class="header-nav">
         <ul>
             <li>
                 <span>Serviços</span>
                 <ul class="dropdown-menu">
-                    <li><a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
-                    <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
-                    <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
-                    <li><a href="https://sacapinformacao.github.io/Compliance/">Compliance e LGPD</a></li>
                     <li><a href="https://sacapinformacao.github.io/Cadastral/">Validação Cadastral</a></li>
+                    <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
                     <li><a href="https://sacapinformacao.github.io/Credito/">Análise de Crédito</a></li>
+                    <li><a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
                     <li><a href="https://sacapinformacao.github.io/checagem-pre-processual/">Checagem Pré-processual</a></li>
                     <li><a href="https://sacapinformacao.github.io/devedores-e-reus/">Localização de Devedores e Réus</a></li>
+                    <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
+                    <li><a href="https://sacapinformacao.github.io/Compliance/">Compliance e LGPD</a></li>
                 </ul>
             </li>
             <li>
@@ -650,7 +652,7 @@
   </header>
 
     <main>
-        <section class="hero">
+        <section class="hero" style="background-color: white;">
             <div class="container">
                 <h1>Localização de Devedores e Réus: Encontre Quem Você Procura com Precisão</h1>
                 <p>Nossa solução utiliza dados abrangentes e atualizados para identificar endereços, telefones e vínculos de pessoas físicas e jurídicas. Encerre o ciclo de "devedor não encontrado" e otimize suas ações de cobrança e citações judiciais.</p>
@@ -682,7 +684,7 @@
             </div>
         </section>
 
-        <section class="section" style="background-color: var(--light-blue);">
+        <section class="section" style="background-color: white;">
             <div class="container" style="text-align: center;">
                 <h2>Por que a Localização de Devedores é sua Prioridade?</h2>
                 <div class="service-grid">
@@ -728,7 +730,7 @@
 
         <section class="section" style="background-color: var(--medium-blue); color: white; text-align: center;">
             <div class="container">
-                <h2>Não Deixe a Inadimplência Prejudicar seu Negócio.</h2>
+                <h2 style="font-weight: 700; color: white;">Não Deixe a Inadimplência Prejudicar seu Negócio.</h2>
                 <p>Nossa solução é a chave para a agilidade e sucesso na sua próxima ação de cobrança ou processo judicial.</p>
                 <a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20soluções%20de%20análise%20de%20risco%20da%20AP%20Informação." class="cta-button" style="background-color: white; color: var(--medium-blue);">Fale com a APinformação</a>
             </div>
@@ -756,14 +758,14 @@
         <div class="footer-column">
             <h3>Serviços</h3>
             <ul>
-                <li><a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
-                <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
-                <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
-                <li><a href="https://sacapinformacao.github.io/Compliance/">Compliance e LGPD</a></li>
                 <li><a href="https://sacapinformacao.github.io/Cadastral/">Validação Cadastral</a></li>
+                <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
                 <li><a href="https://sacapinformacao.github.io/Credito/">Análise de Crédito</a></li>
+                <li><a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
                 <li><a href="https://sacapinformacao.github.io/checagem-pre-processual/">Checagem Pré-processual</a></li>
                 <li><a href="https://sacapinformacao.github.io/devedores-e-reus/">Localização de Devedores e Réus</a></li>
+                <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
+                <li><a href="https://sacapinformacao.github.io/Compliance/">Compliance e LGPD</a></li>
             </ul>
         </div>
         <div class="footer-column">
